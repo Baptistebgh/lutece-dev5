@@ -28,11 +28,13 @@
         </tr>
         <@tableHeadBodySeparator />
             <#list project_list as project >
-        <a href="jsp/site/Portal.jsp?page=project&amp;view=detailsProject&amp;id=${project.id}">
+        
         <tr>
             <input type="hidden" id="id" name="id"/>
             <td>
+            <a href="jsp/site/Portal.jsp?page=project&amp;view=detailsProject&amp;id=${project.id}">
                 ${project.name}
+            </a>
             </td>
             <td>
                 ${project.description}
@@ -44,7 +46,7 @@
             	${project.cout}
             </td>
         <td>
-        </a>
+        
             <a href="jsp/admin/plugins/example/ManageProjects.jsp?view=modifyProject&id=${project.id}"
                class="btn btn-primary btn-sm" title="#i18n{portal.util.labelModify}">
                 <i class="fa fa-pencil"></i>

@@ -51,7 +51,7 @@ public final class ProjectDAO implements IProjectDAO
     private static final String SQL_QUERY_SELECT = "SELECT id_project, Name, Description, image_URL, cout FROM example_project WHERE id_project = ?";
     private static final String SQL_QUERY_INSERT = "INSERT INTO example_project ( id_project, Name, Description, image_URL, cout ) VALUES ( ?, ?, ?, ?, ? ) ";
     private static final String SQL_QUERY_DELETE = "DELETE FROM example_project WHERE id_project = ? ";
-    private static final String SQL_QUERY_UPDATE = "UPDATE example_project SET id_project = ?, Name = ?, Description = ?, image_URL = ?, cout = ?, WHERE id_project = ?";
+    private static final String SQL_QUERY_UPDATE = "UPDATE example_project SET id_project = ?, Name = ?, Description = ?, image_URL = ?, cout = ? WHERE id_project = ?";
     private static final String SQL_QUERY_SELECTALL = "SELECT id_project, Name, Description, image_URL, cout FROM example_project";
     private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_project FROM example_project";
 
