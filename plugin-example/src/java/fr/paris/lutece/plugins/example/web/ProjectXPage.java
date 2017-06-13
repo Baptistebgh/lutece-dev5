@@ -32,7 +32,7 @@
  * License 1.0
  */
 package fr.paris.lutece.plugins.example.web;
- 
+
 import fr.paris.lutece.plugins.example.business.Project;
 import fr.paris.lutece.plugins.example.business.ProjectHome;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.Action;
@@ -46,7 +46,7 @@ import fr.paris.lutece.portal.service.message.SiteMessage;
 import fr.paris.lutece.portal.service.message.SiteMessageException;
 
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest; 
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * This class provides the user interface to manage Project xpages ( manage, create, modify, remove )
@@ -58,26 +58,29 @@ public class ProjectXPage extends MVCApplication
     private static final String TEMPLATE_MANAGE_PROJECTS="/skin/plugins/example/manage_projects.html";
     private static final String TEMPLATE_CREATE_PROJECT="/skin/plugins/example/create_project.html";
     private static final String TEMPLATE_MODIFY_PROJECT="/skin/plugins/example/modify_project.html";
-    
+    private static final String TEMPLATE_DETAILS_PROJECT="/skin/plugins/example/details_project.html";
+
     // JSP
     private static final String JSP_PAGE_PORTAL = "jsp/site/Portal.jsp";
-    
+
     // Parameters
     private static final String PARAMETER_ID_PROJECT="id";
     private static final String PARAM_ACTION = "action";
     private static final String PARAM_PAGE = "page";
-    
+
     // Markers
     private static final String MARK_PROJECT_LIST = "project_list";
     private static final String MARK_PROJECT = "project";
-    
+
     // Message
     private static final String MESSAGE_CONFIRM_REMOVE_PROJECT = "example.message.confirmRemoveProject";
-    
+
     // Views
     private static final String VIEW_MANAGE_PROJECTS = "manageProjects";
     private static final String VIEW_CREATE_PROJECT = "createProject";
     private static final String VIEW_MODIFY_PROJECT = "modifyProject";
+    private static final String VIEW_DETAILS_PROJECT = "detailsProject";
+
 
     // Actions
     private static final String ACTION_CREATE_PROJECT = "createProject";
@@ -89,10 +92,10 @@ public class ProjectXPage extends MVCApplication
     private static final String INFO_PROJECT_CREATED = "example.info.project.created";
     private static final String INFO_PROJECT_UPDATED = "example.info.project.updated";
     private static final String INFO_PROJECT_REMOVED = "example.info.project.removed";
-    
+
     // Session variable to store working values
     private Project _project;
-    
+
     @View( value = VIEW_MANAGE_PROJECTS, defaultView = true )
     public XPage getManageProjects( HttpServletRequest request )
     {
@@ -116,7 +119,7 @@ public class ProjectXPage extends MVCApplication
 
         Map<String, Object> model = getModel(  );
         model.put( MARK_PROJECT, _project );
-           
+
         return getXPage( TEMPLATE_CREATE_PROJECT, request.getLocale(  ), model );
     }
 
@@ -159,7 +162,7 @@ public class ProjectXPage extends MVCApplication
         url.addParameter( PARAM_PAGE, MARK_PROJECT );
         url.addParameter( PARAM_ACTION, ACTION_REMOVE_PROJECT );
         url.addParameter( PARAMETER_ID_PROJECT, nId );
-        
+
         SiteMessageService.setMessage(request, MESSAGE_CONFIRM_REMOVE_PROJECT, SiteMessage.TYPE_CONFIRMATION, url.getUrl(  ));
         return null;
     }
@@ -198,7 +201,7 @@ public class ProjectXPage extends MVCApplication
 
         Map<String, Object> model = getModel(  );
         model.put( MARK_PROJECT, _project );
-        
+
         return getXPage( TEMPLATE_MODIFY_PROJECT, request.getLocale(  ), model );
     }
 
@@ -224,4 +227,21 @@ public class ProjectXPage extends MVCApplication
 
         return redirectView( request, VIEW_MANAGE_PROJECTS );
     }
+
+    @View( VIEW_DETAILS_PROJECT )
+      public XPage getDetailsProject( HttpServletRequest request )
+      {
+
+        int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_PROJECT ) );
+
+        if ( _project == null  || ( _project.getId( ) != nId ))
+        {
+            _project = ProjectHome.findByPrimaryKey( nId );
+        }
+
+          Map<String, Object> model = getModel(  );
+          model.put( MARK_PROJECT, _project );
+
+          return getXPage( TEMPLATE_DETAILS_PROJECT, request.getLocale(  ), model );
+      }
 }
