@@ -54,10 +54,15 @@ public class Project implements Serializable
     @NotEmpty( message = "#i18n{example.validation.project.Description.notEmpty}" )
     @Size( max = 255 , message = "#i18n{example.validation.project.Description.size}" ) 
     private String _strDescription;
+    
     @URL(message = "#i18n{portal.validation.message.url}")
     @NotEmpty( message = "#i18n{example.validation.project.ImageURL.notEmpty}" )
     @Size( max = 255 , message = "#i18n{example.validation.project.ImageURL.size}" ) 
     private String _strImageURL;
+    
+    @NotEmpty( message = "#i18n{example.validation.project.Cout.notEmpty}")
+    private int _nCout;
+    
 
     /**
      * Returns the Id
@@ -129,5 +134,15 @@ public class Project implements Serializable
     public void setImageURL( String strImageURL )
     {
         _strImageURL = strImageURL;
+    }
+    
+    public int getCout( )
+    {
+    	return _nCout;
+    }
+    
+    public void setCout( int nCout)
+    {
+    	_nCout = nCout;
     }
 }
