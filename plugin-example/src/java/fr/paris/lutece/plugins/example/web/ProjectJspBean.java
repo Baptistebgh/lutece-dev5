@@ -56,6 +56,7 @@ public class ProjectJspBean extends ManageProjectJspBean
     private static final String TEMPLATE_MANAGE_PROJECTS = "/admin/plugins/example/manage_projects.html";
     private static final String TEMPLATE_CREATE_PROJECT = "/admin/plugins/example/create_project.html";
     private static final String TEMPLATE_MODIFY_PROJECT = "/admin/plugins/example/modify_project.html";
+    private static final String TEMPLATE_DETAILS_PROJECT = "/admin/plugins/example/details_project.html";
 
     // Parameters
     private static final String PARAMETER_ID_PROJECT = "id";
@@ -64,6 +65,7 @@ public class ProjectJspBean extends ManageProjectJspBean
     private static final String PROPERTY_PAGE_TITLE_MANAGE_PROJECTS = "example.manage_projects.pageTitle";
     private static final String PROPERTY_PAGE_TITLE_MODIFY_PROJECT = "example.modify_project.pageTitle";
     private static final String PROPERTY_PAGE_TITLE_CREATE_PROJECT = "example.create_project.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_DETAILS_PROJECT = "example.details_project.pageTitle";
 
     // Markers
     private static final String MARK_PROJECT_LIST = "project_list";
@@ -81,6 +83,7 @@ public class ProjectJspBean extends ManageProjectJspBean
     private static final String VIEW_MANAGE_PROJECTS = "manageProjects";
     private static final String VIEW_CREATE_PROJECT = "createProject";
     private static final String VIEW_MODIFY_PROJECT = "modifyProject";
+    private static final String VIEW_DETAILS_PROJECT = "detailsProject";
 
     // Actions
     private static final String ACTION_CREATE_PROJECT = "createProject";
@@ -229,5 +232,21 @@ public class ProjectJspBean extends ManageProjectJspBean
         addInfo( INFO_PROJECT_UPDATED, getLocale(  ) );
 
         return redirectView( request, VIEW_MANAGE_PROJECTS );
+    }
+    
+    @View( VIEW_DETAILS_PROJECT )
+    public String getDetailsProject( HttpServletRequest request )
+    {
+        int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_PROJECT ) );
+
+        if ( _project == null || ( _project.getId(  ) != nId ))
+        {
+            _project = ProjectHome.findByPrimaryKey( nId );
+        }
+
+        Map<String, Object> model = getModel(  );
+        model.put( MARK_PROJECT, _project );
+
+        return getPage( PROPERTY_PAGE_TITLE_DETAILS_PROJECT, TEMPLATE_DETAILS_PROJECT, model );
     }
 }
