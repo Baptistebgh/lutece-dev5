@@ -61,6 +61,10 @@ public class Project implements Serializable
     private String _strImageURL;
     
     @NotEmpty( message = "#i18n{example.validation.project.Cout.notEmpty}")
+    @Min(value = 5, message = "#i18n{example.validation.project.Cout.sizeMin}")
+    @Max(value = 25, message = "#i18n{example.validation.project.Cout.sizeMax}")
+    @NotNull(message="L'élément ne doit pas être nul !")
+    // Rajouter une contrainte : multiple de 5
     private int _nCout;
     
 

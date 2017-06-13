@@ -23,6 +23,7 @@
             <th>#i18n{example.manage_projects.columnName}</th>
             <th>#i18n{example.manage_projects.columnDescription}</th>
             <th>#i18n{example.manage_projects.columnImageURL}</th>
+            <th>#i18n{example.manage_projects.columnCout}</th>
             <th>#i18n{portal.util.labelActions}</th>
         </tr>
         <@tableHeadBodySeparator />
@@ -37,6 +38,9 @@
             </td>
             <td>
                 ${project.imageURL}
+            </td>
+            <td>
+            	${project.cout}
             </td>
         <td>
             <a href="jsp/admin/plugins/example/ManageProjects.jsp?view=modifyProject&id=${project.id}"
