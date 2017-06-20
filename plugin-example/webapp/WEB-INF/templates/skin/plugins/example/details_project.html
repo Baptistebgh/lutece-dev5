@@ -10,6 +10,10 @@
       <li class="list-group-item">${project.name}</li>
       <li class="list-group-item">${project.description}</li>
       <li class="list-group-item">${project.cout} €</li>
+      <li class="list-group-item">#i18n{example.extend.resource.commentLabel} @Extender[${project.id},project_resource_type,comment]@</li>
+      <li class="list-group-item">#i18n{example.extend.resource.hitNbLabel} @Extender[${project.id},project_resource_type,hit,{show:true,increment:true}]@</li>
+      <li class="list-group-item">#i18n{example.extend.resource.voteLabel} 
+      @Extender[${project.id},project_resource_type,rating,{show:"all"}]@</li>
     </ul>
 
 </div>

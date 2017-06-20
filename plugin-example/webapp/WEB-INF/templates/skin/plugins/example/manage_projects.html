@@ -10,21 +10,43 @@
 
     <div class="row">
             <#list project_list as project >
-        <a href="jsp/site/Portal.jsp?page=project&amp;view=detailsProject&amp;id=${project.id}">
+       
           <div class="col-md-3">
-          <div class="thumbnail">
-            <input type="hidden" id="id" name="id" />
-            <div>
-              <img src=${project.imageURL} class="img-thumbnail">
-            </div>
-            <div>
-                <h3>${project.name}</h3>
-            </div>
-          </div>
-        </div>
-      </a>
-        </#list>
-    </div>
+          	<div class="thumbnail">
+            	<input type="hidden" id="id" name="id" />
+            
+             	<a href="jsp/site/Portal.jsp?page=project&amp;view=detailsProject&amp;id=${project.id}">
+            	<div>
+              	<img src=${project.imageURL} class="img-thumbnail">
+            	</div>
+            
+            	<div>
+                	<h3>${project.name}</h3>
+            	</div>  
+        		</a>
+        	
+        	
+        	
+            	<div>
+           			<p>#i18n{example.extend.resource.hitNbLabel}
+          				<span class="label label-default">
+            				@Extender[${project.id},project_resource_type,hit,{show:true,increment:false}]@ 
+            			</span>
+            		</p>
+            	</div>	
+            
+            
+           		<div>
+					<p>#i18n{example.extend.resource.voteLabel} 
+							@Extender[${project.id},project_resource_type,rating,{show:"all"}]@
+					</p>	
+ 				</div>
+ 			
+ 				</div>
+ 			</div>
 
+        	</#list>
+    	</div>
+  
     </div>
 </div>

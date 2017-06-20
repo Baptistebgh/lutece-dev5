@@ -35,12 +35,15 @@ package fr.paris.lutece.plugins.example.business;
 
 import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.*;
+
+import fr.paris.lutece.portal.service.resource.IExtendableResource;
+
 import java.io.Serializable;
 
 /**
  * This is the business class for the object Project
  */ 
-public class Project implements Serializable
+public class Project implements Serializable, IExtendableResource 
 {
     private static final long serialVersionUID = 1L;
 
@@ -64,8 +67,9 @@ public class Project implements Serializable
 
     @Min(value = 5, message = "Le coût doit être supérieur à 5 € !")
     @Max(value = 25, message = "Le coût doit être inférieur à 25 € !")
-
     private int _nCout;
+    
+    public static String PROPERTY_RESOURCE_TYPE ="Project_resource_type";
     
 
     /**
@@ -149,4 +153,33 @@ public class Project implements Serializable
     {
     	_nCout = nCout;
     }
+
+	@Override
+	public String getIdExtendableResource() {
+		return Integer.toString(_nId);
+	}
+
+	@Override
+	public String getExtendableResourceType() {
+		
+		return PROPERTY_RESOURCE_TYPE;
+	}
+
+	@Override
+	public String getExtendableResourceName() {
+		
+		return _strName;
+	}
+
+	@Override
+	public String getExtendableResourceDescription() {
+		
+		return _strDescription;
+	}
+
+	@Override
+	public String getExtendableResourceImageUrl() {
+		
+		return _strImageURL;
+	}
 }
