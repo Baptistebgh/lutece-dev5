@@ -1,144 +1,55 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <parent>
-        <artifactId>lutece-site-pom</artifactId>
+        <artifactId>lutece-global-pom</artifactId>
         <groupId>fr.paris.lutece.tools</groupId>
-        <version>2.0.4</version>
+        <version>4.0.2</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>fr.paris.lutece</groupId>
-    <artifactId>lutece-test</artifactId>
-    <packaging>pom</packaging>
+    <groupId>fr.paris.lutece.plugins</groupId>
+    <artifactId>plugin-example</artifactId>
+    <packaging>lutece-plugin</packaging>
     <version>1.0.0-SNAPSHOT</version>
-    <name>lutece-test</name>
-	
+    <name>Lutece example plugin</name>
 
     <repositories>
-        <repository>
-            <id>luteceSnapshot</id>
-            <name>luteceSnapshot</name>
-            <url>http://dev.lutece.paris.fr/snapshot_repository</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
         <repository>
             <id>lutece</id>
             <name>luteceRepository</name>
             <url>http://dev.lutece.paris.fr/maven_repository</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
+            <layout>default</layout>
         </repository>
     </repositories>
 
     <dependencies>
+    
         <dependency>
             <groupId>fr.paris.lutece</groupId>
             <artifactId>lutece-core</artifactId>
-            <version>5.0.1</version> 
+            <version>[5.0.0,)</version>
             <type>lutece-core</type>
         </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-avatar</artifactId>
-            <version>1.3.0</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-example</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-extend</artifactId>
-            <version>1.3.3</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>module-extend-comment</artifactId>
-            <version>1.1.7</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>module-extend-rating</artifactId>
-            <version>1.1.6</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>library-lucene</artifactId>
-            <version>3.0.0</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-mydashboard</artifactId>
-            <version>1.1.1</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-mylutece</artifactId>
-            <version>3.3.4</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>module-mylutece-database</artifactId>
-            <version>5.0.0</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-mylutecetest</artifactId>
-            <version>3.2.0</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-rest</artifactId>
-            <version>3.1.0</version>
-            <type>lutece-plugin</type>
-        </dependency>
+    	
+    	<dependency>
+    		<groupId>fr.paris.lutece.plugins</groupId>
+    		<artifactId>plugin-rest</artifactId>
+    		<version>3.1.1-SNAPSHOT</version>
+    		<type>lutece-plugin</type>
+    	</dependency>
+    	
+    	<dependency>
+    		<groupId>fr.paris.lutece.plugins</groupId>
+    		<artifactId>module-extend-rating</artifactId>
+    		<version>1.1.6</version>
+    		<type>lutece-plugin</type>
+    	</dependency>
+    	
     </dependencies>
-	
-	<profiles>    
-      <profile>
-          <id>multi-project</id>
-          <modules>
-              <module>lutece-core</module>
-              <module>plugin-example</module>
-              <module>plugins/search/library-lucene</module>
-              <module>plugins/auth/plugin-mylutece</module>
-              <module>plugins/extends/plugin-extend</module>
-              <module>plugins/extends/module-extend-rating</module>
-              <module>plugins/extends/module-extend-comment</module>
-              <module>plugins/auth/module-mylutece-database</module>
-              <module>plugins/myapps/plugin-avatar</module>
-              <module>plugins/myapps/plugin-mydashboard</module>
-              <module>plugins/auth/plugin-mylutecetest</module>
-              <module>plugins/tech/plugin-rest</module>
-          </modules>
-      </profile>
-    </profiles>
-	
 
-	
-	
-
-    <!--
-    <scm>
-        <connection>scm:svn:http://dev.lutece.paris.fr/svn/sites/site-mysite/trunk/</connection>
-    </scm>
-    -->
-
+    <properties>
+        <componentName>example</componentName>
+        <jiraProjectName>EXAMPLE</jiraProjectName>
+        <jiraComponentId></jiraComponentId>
+    </properties>
 </project>
