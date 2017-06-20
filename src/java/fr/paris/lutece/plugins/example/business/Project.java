@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2016, Mairie de Paris
+ * Copyright (c) 2002-2017, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * License 1.0
- */ 
+ */
 package fr.paris.lutece.plugins.example.business;
 
 import javax.validation.constraints.*;
@@ -42,38 +42,36 @@ import java.io.Serializable;
 
 /**
  * This is the business class for the object Project
- */ 
-public class Project implements Serializable, IExtendableResource 
+ */
+public class Project implements Serializable, IExtendableResource
 {
     private static final long serialVersionUID = 1L;
 
-    // Variables declarations 
+    // Variables declarations
     private int _nId;
-    
-    @NotEmpty( message = "#i18n{example.validation.project.Name.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{example.validation.project.Name.size}" ) 
-    private String _strName;
-    
-    @NotEmpty( message = "#i18n{example.validation.project.Description.notEmpty}" )
-    @Size( max = 255 , message = "#i18n{example.validation.project.Description.size}" ) 
-    private String _strDescription;
-    
-    @URL(message = "#i18n{portal.validation.message.url}")
-    @NotEmpty( message = "#i18n{example.validation.project.ImageURL.notEmpty}" )
-    @Size( max = 255 , message = "#i18n{example.validation.project.ImageURL.size}" ) 
-    private String _strImageURL;
-    
-    
 
-    @Min(value = 5, message = "Le coût doit être supérieur à 5 € !")
-    @Max(value = 25, message = "Le coût doit être inférieur à 25 € !")
+    @NotEmpty( message = "#i18n{example.validation.project.Name.notEmpty}" )
+    @Size( max = 50, message = "#i18n{example.validation.project.Name.size}" )
+    private String _strName;
+
+    @NotEmpty( message = "#i18n{example.validation.project.Description.notEmpty}" )
+    @Size( max = 255, message = "#i18n{example.validation.project.Description.size}" )
+    private String _strDescription;
+
+    @URL( message = "#i18n{portal.validation.message.url}" )
+    @NotEmpty( message = "#i18n{example.validation.project.ImageURL.notEmpty}" )
+    @Size( max = 255, message = "#i18n{example.validation.project.ImageURL.size}" )
+    private String _strImageURL;
+
+    @Min( value = 5, message = "Le coût doit être supérieur à 5 € !" )
+    @Max( value = 25, message = "Le coût doit être inférieur à 25 € !" )
     private int _nCout;
-    
-    public static String PROPERTY_RESOURCE_TYPE ="Project_resource_type";
-    
+
+    public static String PROPERTY_RESOURCE_TYPE = "Project_resource_type";
 
     /**
      * Returns the Id
+     * 
      * @return The Id
      */
     public int getId( )
@@ -83,15 +81,18 @@ public class Project implements Serializable, IExtendableResource
 
     /**
      * Sets the Id
-     * @param nId The Id
-     */ 
+     * 
+     * @param nId
+     *            The Id
+     */
     public void setId( int nId )
     {
         _nId = nId;
     }
-    
+
     /**
      * Returns the Name
+     * 
      * @return The Name
      */
     public String getName( )
@@ -101,15 +102,18 @@ public class Project implements Serializable, IExtendableResource
 
     /**
      * Sets the Name
-     * @param strName The Name
-     */ 
+     * 
+     * @param strName
+     *            The Name
+     */
     public void setName( String strName )
     {
         _strName = strName;
     }
-    
+
     /**
      * Returns the Description
+     * 
      * @return The Description
      */
     public String getDescription( )
@@ -119,15 +123,18 @@ public class Project implements Serializable, IExtendableResource
 
     /**
      * Sets the Description
-     * @param strDescription The Description
-     */ 
+     * 
+     * @param strDescription
+     *            The Description
+     */
     public void setDescription( String strDescription )
     {
         _strDescription = strDescription;
     }
-    
+
     /**
      * Returns the ImageURL
+     * 
      * @return The ImageURL
      */
     public String getImageURL( )
@@ -137,49 +144,56 @@ public class Project implements Serializable, IExtendableResource
 
     /**
      * Sets the ImageURL
-     * @param strImageURL The ImageURL
-     */ 
+     * 
+     * @param strImageURL
+     *            The ImageURL
+     */
     public void setImageURL( String strImageURL )
     {
         _strImageURL = strImageURL;
     }
-    
+
     public int getCout( )
     {
-    	return _nCout;
+        return _nCout;
     }
-    
-    public void setCout( int nCout)
+
+    public void setCout( int nCout )
     {
-    	_nCout = nCout;
+        _nCout = nCout;
     }
 
-	@Override
-	public String getIdExtendableResource() {
-		return Integer.toString(_nId);
-	}
+    @Override
+    public String getIdExtendableResource( )
+    {
+        return Integer.toString( _nId );
+    }
 
-	@Override
-	public String getExtendableResourceType() {
-		
-		return PROPERTY_RESOURCE_TYPE;
-	}
+    @Override
+    public String getExtendableResourceType( )
+    {
 
-	@Override
-	public String getExtendableResourceName() {
-		
-		return _strName;
-	}
+        return PROPERTY_RESOURCE_TYPE;
+    }
 
-	@Override
-	public String getExtendableResourceDescription() {
-		
-		return _strDescription;
-	}
+    @Override
+    public String getExtendableResourceName( )
+    {
 
-	@Override
-	public String getExtendableResourceImageUrl() {
-		
-		return _strImageURL;
-	}
+        return _strName;
+    }
+
+    @Override
+    public String getExtendableResourceDescription( )
+    {
+
+        return _strDescription;
+    }
+
+    @Override
+    public String getExtendableResourceImageUrl( )
+    {
+
+        return _strImageURL;
+    }
 }

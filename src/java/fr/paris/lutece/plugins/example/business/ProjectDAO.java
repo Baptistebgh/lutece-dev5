@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2016, Mairie de Paris
+ * Copyright (c) 2002-2017, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -31,7 +31,6 @@
  *
  * License 1.0
  */
-
 package fr.paris.lutece.plugins.example.business;
 
 import fr.paris.lutece.portal.service.plugin.Plugin;
@@ -57,21 +56,23 @@ public final class ProjectDAO implements IProjectDAO
 
     /**
      * Generates a new primary key
-     * @param plugin The Plugin
+     * 
+     * @param plugin
+     *            The Plugin
      * @return The new primary key
      */
-    public int newPrimaryKey( Plugin plugin)
+    public int newPrimaryKey( Plugin plugin )
     {
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_NEW_PK , plugin  );
+        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_NEW_PK, plugin );
         daoUtil.executeQuery( );
         int nKey = 1;
 
-        if( daoUtil.next( ) )
+        if ( daoUtil.next( ) )
         {
             nKey = daoUtil.getInt( 1 ) + 1;
         }
 
-        daoUtil.free();
+        daoUtil.free( );
         return nKey;
     }
 
@@ -84,12 +85,12 @@ public final class ProjectDAO implements IProjectDAO
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin );
         project.setId( newPrimaryKey( plugin ) );
         int nIndex = 1;
-        
-        daoUtil.setInt( nIndex++ , project.getId( ) );
-        daoUtil.setString( nIndex++ , project.getName( ) );
-        daoUtil.setString( nIndex++ , project.getDescription( ) );
-        daoUtil.setString( nIndex++ , project.getImageURL( ) );
-        daoUtil.setInt(nIndex++ , project.getCout() );
+
+        daoUtil.setInt( nIndex++, project.getId( ) );
+        daoUtil.setString( nIndex++, project.getName( ) );
+        daoUtil.setString( nIndex++, project.getDescription( ) );
+        daoUtil.setString( nIndex++, project.getImageURL( ) );
+        daoUtil.setInt( nIndex++, project.getCout( ) );
 
         daoUtil.executeUpdate( );
         daoUtil.free( );
@@ -102,20 +103,20 @@ public final class ProjectDAO implements IProjectDAO
     public Project load( int nKey, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT, plugin );
-        daoUtil.setInt( 1 , nKey );
+        daoUtil.setInt( 1, nKey );
         daoUtil.executeQuery( );
         Project project = null;
 
         if ( daoUtil.next( ) )
         {
-            project = new Project();
+            project = new Project( );
             int nIndex = 1;
-            
+
             project.setId( daoUtil.getInt( nIndex++ ) );
             project.setName( daoUtil.getString( nIndex++ ) );
             project.setDescription( daoUtil.getString( nIndex++ ) );
             project.setImageURL( daoUtil.getString( nIndex++ ) );
-            project.setCout( daoUtil.getInt( nIndex++) );
+            project.setCout( daoUtil.getInt( nIndex++ ) );
         }
 
         daoUtil.free( );
@@ -129,7 +130,7 @@ public final class ProjectDAO implements IProjectDAO
     public void delete( int nKey, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin );
-        daoUtil.setInt( 1 , nKey );
+        daoUtil.setInt( 1, nKey );
         daoUtil.executeUpdate( );
         daoUtil.free( );
     }
@@ -142,13 +143,13 @@ public final class ProjectDAO implements IProjectDAO
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin );
         int nIndex = 1;
-        
-        daoUtil.setInt( nIndex++ , project.getId( ) );
-        daoUtil.setString( nIndex++ , project.getName( ) );
-        daoUtil.setString( nIndex++ , project.getDescription( ) );
-        daoUtil.setString( nIndex++ , project.getImageURL( ) );
-        daoUtil.setInt( nIndex++ , project.getCout() );
-        daoUtil.setInt( nIndex , project.getId( ) );
+
+        daoUtil.setInt( nIndex++, project.getId( ) );
+        daoUtil.setString( nIndex++, project.getName( ) );
+        daoUtil.setString( nIndex++, project.getDescription( ) );
+        daoUtil.setString( nIndex++, project.getImageURL( ) );
+        daoUtil.setInt( nIndex++, project.getCout( ) );
+        daoUtil.setInt( nIndex, project.getId( ) );
 
         daoUtil.executeUpdate( );
         daoUtil.free( );
@@ -160,20 +161,20 @@ public final class ProjectDAO implements IProjectDAO
     @Override
     public List<Project> selectProjectsList( Plugin plugin )
     {
-        List<Project> projectList = new ArrayList<Project>(  );
+        List<Project> projectList = new ArrayList<Project>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
-            Project project = new Project(  );
+            Project project = new Project( );
             int nIndex = 1;
-            
+
             project.setId( daoUtil.getInt( nIndex++ ) );
             project.setName( daoUtil.getString( nIndex++ ) );
             project.setDescription( daoUtil.getString( nIndex++ ) );
             project.setImageURL( daoUtil.getString( nIndex++ ) );
-            project.setCout( daoUtil.getInt( nIndex++) );
+            project.setCout( daoUtil.getInt( nIndex++ ) );
 
             projectList.add( project );
         }
@@ -181,7 +182,7 @@ public final class ProjectDAO implements IProjectDAO
         daoUtil.free( );
         return projectList;
     }
-    
+
     /**
      * {@inheritDoc }
      */
@@ -190,9 +191,9 @@ public final class ProjectDAO implements IProjectDAO
     {
         List<Integer> projectList = new ArrayList<Integer>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
             projectList.add( daoUtil.getInt( 1 ) );
         }
@@ -200,20 +201,20 @@ public final class ProjectDAO implements IProjectDAO
         daoUtil.free( );
         return projectList;
     }
-    
+
     /**
      * {@inheritDoc }
      */
     @Override
     public ReferenceList selectProjectsReferenceList( Plugin plugin )
     {
-        ReferenceList projectList = new ReferenceList();
+        ReferenceList projectList = new ReferenceList( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
-            projectList.addItem( daoUtil.getInt( 1 ) , daoUtil.getString( 2 ) );
+            projectList.addItem( daoUtil.getInt( 1 ), daoUtil.getString( 2 ) );
         }
 
         daoUtil.free( );

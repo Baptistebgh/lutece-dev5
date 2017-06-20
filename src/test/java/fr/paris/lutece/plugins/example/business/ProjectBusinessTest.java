@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2016, Mairie de Paris
+ * Copyright (c) 2002-2017, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -31,11 +31,9 @@
  *
  * License 1.0
  */
-
 package fr.paris.lutece.plugins.example.business;
 
 import fr.paris.lutece.test.LuteceTestCase;
-
 
 public class ProjectBusinessTest extends LuteceTestCase
 {
@@ -48,43 +46,43 @@ public class ProjectBusinessTest extends LuteceTestCase
     private final static int COUT1 = 7;
     private final static int COUT2 = 12;
 
-    public void testBusiness(  )
+    public void testBusiness( )
     {
         // Initialize an object
-        Project project = new Project();
+        Project project = new Project( );
         project.setName( NAME1 );
         project.setDescription( DESCRIPTION1 );
         project.setImageURL( IMAGEURL1 );
-        project.setCout(COUT1);
+        project.setCout( COUT1 );
 
         // Create test
         ProjectHome.create( project );
         Project projectStored = ProjectHome.findByPrimaryKey( project.getId( ) );
-        assertEquals( projectStored.getName() , project.getName( ) );
-        assertEquals( projectStored.getDescription() , project.getDescription( ) );
-        assertEquals( projectStored.getImageURL() , project.getImageURL( ) );
-        assertEquals(projectStored.getCout(),project.getCout( ) );
+        assertEquals( projectStored.getName( ), project.getName( ) );
+        assertEquals( projectStored.getDescription( ), project.getDescription( ) );
+        assertEquals( projectStored.getImageURL( ), project.getImageURL( ) );
+        assertEquals( projectStored.getCout( ), project.getCout( ) );
 
         // Update test
         project.setName( NAME2 );
         project.setDescription( DESCRIPTION2 );
         project.setImageURL( IMAGEURL2 );
-        project.setCout(COUT2);
+        project.setCout( COUT2 );
         ProjectHome.update( project );
         projectStored = ProjectHome.findByPrimaryKey( project.getId( ) );
-        assertEquals( projectStored.getName() , project.getName( ) );
-        assertEquals( projectStored.getDescription() , project.getDescription( ) );
-        assertEquals( projectStored.getImageURL() , project.getImageURL( ) );
-        assertEquals( projectStored.getCout(), project.getCout( ) );
+        assertEquals( projectStored.getName( ), project.getName( ) );
+        assertEquals( projectStored.getDescription( ), project.getDescription( ) );
+        assertEquals( projectStored.getImageURL( ), project.getImageURL( ) );
+        assertEquals( projectStored.getCout( ), project.getCout( ) );
 
         // List test
-        ProjectHome.getProjectsList();
+        ProjectHome.getProjectsList( );
 
         // Delete test
         ProjectHome.remove( project.getId( ) );
         projectStored = ProjectHome.findByPrimaryKey( project.getId( ) );
         assertNull( projectStored );
-        
+
     }
 
 }
